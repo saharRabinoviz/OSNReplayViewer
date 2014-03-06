@@ -51,6 +51,7 @@ final int VER_10 = 1000;
 final int VER_12 = 1200;
 final int VER_15 = 1500;
 final int VER_16 = 1600;
+final int VER_17 = 1700;
 
 final int ALT_OFFSET = 10;
 
@@ -740,6 +741,17 @@ class ReplayController implements ReplayControllerDelegate {
   void processStartTurnAction() {
     if (runtimeVersion >= VER_12 && current_turn.turnID == 2 && _players.size() == 2)
       current_action_points = 8;
+    else if(runtimeVersion >= VER_17 && _players.size() == 4)
+      switch(current_turn_ID)
+        case 2:
+          current_action_points = 7;
+          break;
+        case 4:
+          current_action_points = 6;
+          break;
+        default:
+          current_action_points = 5;
+          break;
     else
       current_action_points += 5;
     for (int i = 0; i < _witPoints.size(); i++) 
